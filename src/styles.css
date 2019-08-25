@@ -1,0 +1,12 @@
+/* Add application styles & imports to this file! */
+/*@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+*/
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --global-block-background-color:      rgba( 20, 100, 200, 0.8);
+  --global-block-background-hover-color:rgba( 20, 100, 200,   1);
+  --global-block-border-color:          rgba(255, 255, 255, 0.8);
+  --global-block-shadow: 0 3px 6px      rgba(  0,   0,   0, 0.5);
+  --global-font-color:                  rgba(255, 255, 255, 0.8);
+}

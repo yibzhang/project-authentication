@@ -1,0 +1,68 @@
+/*
+margin
+size
+color
+font size
+font color
+align
+*/
+
+.login-card {
+  margin-top: 100px;
+  height: auto;
+  background: var(--global-block-background-color);
+  box-shadow: var(--global-block-shadow);
+  text-align: center;
+}
+
+.login-card-title {
+  margin-top: 15px;
+  height: auto;
+  font-size: xx-large;
+  font-weight: bold;
+  color: var(--global-font-color);
+  text-align: center;
+}
+
+.login-card-form {
+  margin-top: 25px;
+  text-align: left;
+}
+
+.login-card-form-group {
+  margin-top: 25px;
+}
+
+.login-card-form-group-label {
+  font-size: small;
+  color: var(--global-font-color);
+}
+
+.login-card-form-group-btn-div{ 
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-right: 0px;
+  text-align: right;
+}
+
+.login-card-form-group-btn {
+  font-size: medium;
+  font-weight: bold;
+  color: var(--global-font-color);
+  border-color: var(--global-block-border-color);
+}
+
+.login-card-form-group-btn:hover{
+  font-size: medium;
+  font-weight: bold;
+  color: var(--global-font-color);
+  background: var(--global-block-background-hover-color);
+}
+
+input:focus{
+  background-color:rgba(255, 255, 255, 0.8);
+}
+
+label {
+  margin-bottom: 0px;
+}

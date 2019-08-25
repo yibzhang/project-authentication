@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-2"></div>
+
+    <!-- register card -->
+    <div class="col-lg-6 col-md-8 register-card">
+      <!-- register card title -->
+      <div class="col-lg-12 register-card-title">register</div>      
+      <!-- register card body -->
+      <div class="col-lg-12 register-card-form">
+        <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()" class="test">
+          <!-- email -->
+          <div class="form-group register-card-form-group">
+            <label class="register-card-form-group-label">EMAIL</label>
+            <input type="text" class="form-control">
+          </div>
+          <!-- password -->
+          <div class="form-group register-card-form-group">
+            <label class="register-card-form-group-label">PASSWORD</label>
+            <input type="password" class="form-control">
+          </div>
+          <!-- confirm password -->
+          <div class="form-group register-card-form-group">
+            <label class="register-card-form-group-label">CONFIRM PASSWORD</label>
+            <input type="password" class="form-control">
+          </div>          
+          <!-- button -->
+          <div class="form-group register-card-form-group-btn-div">
+            <button type="submit" class="btn register-card-form-group-btn">Submit</button>
+          </div>
+        </form>        
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-2"></div>
+  </div>
+</div>
+
+
+

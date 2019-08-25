@@ -1,0 +1,14 @@
+/*
+margin
+size
+color
+font size
+font color
+align
+*/
+
+.userDetailCard{
+  margin-top: 100px;
+  height: auto;
+  text-align: left;
+}
