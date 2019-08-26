@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './../login/login.component';
 import { RegisterComponent } from './../register/register.component';
 import { UserDetailComponent } from './../user-detail/user-detail.component';
+import { ProductComponent } from './../product/product.component';
 
 const routes : Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'userDetail', component: UserDetailComponent}
+  { path: 'userDetail', component: UserDetailComponent},
+  { path: 'product', component: ProductComponent}
 ]
 
 @NgModule({
@@ -29,7 +31,8 @@ const routes : Routes = [
   declarations: [ AppComponent, 
                   LoginComponent,
                   RegisterComponent,
-                  UserDetailComponent],
+                  UserDetailComponent,
+                  ProductComponent],
 
   bootstrap:    [ AppComponent ]
 })
