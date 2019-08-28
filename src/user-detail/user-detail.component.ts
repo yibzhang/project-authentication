@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+// servie
+import { UserService } from './../service/user.service';
+// model
 import { User } from './../model/user';
 
 @Component({
@@ -7,9 +10,10 @@ import { User } from './../model/user';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  userDetail : User;
+  userDetail: User;
+  users: User[];
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.userDetail = new User();
     this.userDetail.email    = 'N/A';
     this.userDetail.password = 'N/A';
@@ -17,5 +21,11 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  getAllUsers(){
+    this.userService.read().subscribe(
+      (users: User[]) => {this.users = users}
+    );
+  } 
 
 }
