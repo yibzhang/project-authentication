@@ -7,6 +7,11 @@
         <li class="list-group-item">Email:{{userDetail.email}}</li>
         <li class="list-group-item">Password:{{userDetail.password}}</li>
       </ul>      
+      <ul class="list-group" *ngFor="let user of users">
+        <li class="list-group-item">Email:{{user.email}}</li>
+        <li class="list-group-item">Password:{{user.password}}</li>
+      </ul>
+      <button class="btn btn-primary" style="margin-top:10px" (click)="getAllUsers()">Get All User</button>
     </div>
 
     <div class="col-lg-3 col-md-2"></div>

@@ -19,7 +19,7 @@ export class UserService {
   create(){}
   // Read all users information: for testing
   read(): Observable<User[]>{
-    const url = `$(this.rootUrl)/users`;
+    const url = `${this.rootUrl}/users`;
     return this.http.get<User[]>(url);
   } 
   update(){}

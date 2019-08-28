@@ -21,7 +21,7 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  // Only for testing
   getAllUsers(){
     this.userService.read().subscribe(
       (users: User[]) => {this.users = users}
