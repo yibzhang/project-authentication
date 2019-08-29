@@ -11,11 +11,20 @@ export class FakeBackendInterceptor implements HttpInterceptor{
 
 
 
-    return of(null).pipe(
-      
-    );
+    return of(null)
+    .pipe(mergeMap(routeHandle))
+    .pipe(materialize())
+    .pipe(delay(500))
+    .pipe(dematerialize());
 
-
+    function routeHandle(){
+      switch(true){
+        case url.endsWith('/users/authenticate') && (method == 'POST'):
+          return authenticate();
+        default:
+          return next.handle(request);
+      }
+    }
 
     function authenticate(){
       const {email, password} = body;
