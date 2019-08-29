@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 // Model
-import { User } from './../model/user';
+import { User } from './../_model/user';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class UserService {
   // Read all users information: for testing
   read(): Observable<User[]>{
     const url = `${this.rootUrl}/users`;
-    return this.http.get<User[]>(url);
+    return this.http.get<User[]>(url).pipe();
   } 
   update(){}
   delete(){}

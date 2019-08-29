@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { User } from '../model/User';
+import { User } from '../_model/User';
 
 @Component({
   selector: 'app-login',
