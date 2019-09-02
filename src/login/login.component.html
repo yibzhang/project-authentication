@@ -8,16 +8,16 @@
       <div class="col-lg-12 login-card-title">Login</div>      
       <!-- login card body -->
       <div class="col-lg-12 login-card-form">
-        <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()" class="test">
+        <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
           <!-- email -->
           <div class="form-group login-card-form-group">
             <label class="login-card-form-group-label">EMAIL</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="email">
           </div>
           <!-- password -->
           <div class="form-group login-card-form-group">
             <label class="login-card-form-group-label">PASSWORD</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" formControlName="password">
           </div>
           <!-- button -->
           <div class="form-group login-card-form-group-btn-div">

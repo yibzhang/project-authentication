@@ -13,6 +13,8 @@ import { LoginComponent } from './../login/login.component';
 import { RegisterComponent } from './../register/register.component';
 import { UserDetailComponent } from './../user-detail/user-detail.component';
 import { ProductComponent } from './../product/product.component';
+// Interceptors
+import { httpInterceptorProvider } from './../_interceptor';
 
 const routes : Routes = [
   { path: '', component: LoginComponent },
@@ -29,6 +31,7 @@ const routes : Routes = [
                   RouterModule.forRoot(routes, {enableTracing: true}),
                   FormsModule, 
                   ReactiveFormsModule],
+  providers:    [ httpInterceptorProvider],
 
   declarations: [ AppComponent, 
                   LoginComponent,

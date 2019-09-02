@@ -11,19 +11,23 @@ import { User } from '../_model/User';
 })
 
 export class LoginComponent implements OnInit {
-  loginFormGroup : FormGroup;
-
+  loginFormGroup = this.loginFormBuilder.group({
+      email   : [''],
+      password: ['']
+    });
+  
+  /*loginFormGroup = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
+  });*/
+  
   constructor(private loginFormBuilder : FormBuilder) { }
 
   ngOnInit() {
-    this.loginFormGroup = this.loginFormBuilder.group({
-      email    : ['', Validators.required],
-      password : ['', Validators.required]
-    });
   }
 
   onSubmit(){
-    //console.warn(this.userForm.value);
+    console.log(this.loginFormGroup.value);
   }
 
 }
