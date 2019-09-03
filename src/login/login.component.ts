@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { UserService } from './../_service/user.service';
 import { User } from '../_model/User';
 
 @Component({
@@ -16,18 +17,15 @@ export class LoginComponent implements OnInit {
       password: ['']
     });
   
-  /*loginFormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
-  });*/
-  
-  constructor(private loginFormBuilder : FormBuilder) { }
+  constructor(private loginFormBuilder: FormBuilder,
+              private userService: UserService ) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log(this.loginFormGroup.value);
+    //console.log(this.loginFormGroup.value);
+    return this.userService.userLogin({email: "test1@test.com", password: "12345678"});
   }
 
 }

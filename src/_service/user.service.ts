@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
 // http
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 // rxjs
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 // Model
 import { User } from './../_model/user';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
 
 @Injectable({
   providedIn: 'root',
@@ -24,4 +31,10 @@ export class UserService {
   } 
   update(){}
   delete(){}
+
+  // Login
+  userLogin(user: User): Observable<User>{
+    const url = `${this.rootUrl}/users/authenticate`;
+    return this.http.post<User>(url, user, httpOptions).pipe();
+  }
 }
