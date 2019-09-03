@@ -34,6 +34,7 @@ export class UserService {
 
   // Login
   userLogin(user: User): Observable<User>{
+    console.log(user);
     const url = `${this.rootUrl}/users/authenticate`;
     return this.http.post<User>(url, user, httpOptions).pipe();
   }

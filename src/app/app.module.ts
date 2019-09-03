@@ -25,20 +25,29 @@ const routes : Routes = [
 ]
 
 @NgModule({
-  imports:      [ BrowserModule,
+  imports:      [ 
+                  BrowserModule,
                   NgbModule,
                   HttpClientModule,
                   RouterModule.forRoot(routes, {enableTracing: true}),
                   FormsModule, 
-                  ReactiveFormsModule],
-  providers:    [ httpInterceptorProvider],
+                  ReactiveFormsModule
+                ],
+  providers:    [ 
+                  httpInterceptorProvider 
+                ],
 
-  declarations: [ AppComponent, 
+  declarations: [ 
+                  AppComponent, 
                   LoginComponent,
                   RegisterComponent,
                   UserDetailComponent,
-                  ProductComponent],
+                  ProductComponent
+                ],
 
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ 
+                  AppComponent 
+                ]
 })
+
 export class AppModule { }

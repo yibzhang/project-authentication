@@ -9,12 +9,14 @@ export class FakeBackendInterceptor implements HttpInterceptor{
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const {url, method, headers, body} = request;
 
+    //console.log({url, method, headers, body});
+
     return of(null)
     .pipe(mergeMap(routeHandle))
     .pipe(materialize())
     .pipe(delay(500))
     .pipe(dematerialize());
-
+  
     function routeHandle(){
       switch(true){
         case url.endsWith('/users/authenticate') && (method == 'POST'):
