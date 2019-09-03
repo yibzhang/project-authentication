@@ -30,11 +30,4 @@ export class UserService {
   } 
   update(){}
   delete(){}
-
-  // Login
-  userLogin(user: User): Observable<User>{
-    console.log(user);
-    const url = `${environment.apiUrl}/users/authenticate`;
-    return this.http.post<User>(url, user, httpOptions).pipe();
-  }
 }
