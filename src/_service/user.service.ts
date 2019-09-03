@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from './../environments/environment';
 // http
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // rxjs
@@ -18,15 +19,13 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
-  rootUrl = "https://my-json-server.typicode.com/yibzhang/demo";
-
   constructor(private http: HttpClient) { }
 
   // crud
   create(){}
   // Read all users information: for testing
   read(): Observable<User[]>{
-    const url = `${this.rootUrl}/users`;
+    const url = `${environment.apiUrl}/users`;
     return this.http.get<User[]>(url).pipe();
   } 
   update(){}
@@ -35,7 +34,7 @@ export class UserService {
   // Login
   userLogin(user: User): Observable<User>{
     console.log(user);
-    const url = `${this.rootUrl}/users/authenticate`;
+    const url = `${environment.apiUrl}/users/authenticate`;
     return this.http.post<User>(url, user, httpOptions).pipe();
   }
 }

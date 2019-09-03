@@ -25,8 +25,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     //console.log(this.loginFormGroup.value);
-    return this.userService.userLogin({email: "test1@test.com", password: "12345678"}).subscribe(
-      res => console.log(res)
+    return this.userService.userLogin(this.loginFormGroup.value).subscribe(
+      res => console.log(res),
+      err => console.log(err),
     );
   }
 
