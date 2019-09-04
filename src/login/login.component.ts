@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UserService } from './../_service/user.service';
 import { AuthenticationService } from './../_service/authentication.service';
 import { User } from '../_model/User';
+
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +22,7 @@ export class LoginComponent implements OnInit {
     });
   
   constructor(private loginFormBuilder: FormBuilder,
+              private router: Router,
               private userService: UserService,
               private authenticationService: AuthenticationService) { }
 
@@ -26,9 +30,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    //console.log(this.loginFormGroup.value);
-    return this.authenticationService.login(this.loginFormGroup.value).subscribe(
-      res => console.log(res),
+    return this.authenticationService.login(this.loginFormGroup.value)
+    .pipe(first())
+    .subscribe(
+      res => {
+        // TODO: active guard needs to be added
+        this.router.navigate(['/userDetail']);
+      },
       err => console.log(err),
     );
   }
