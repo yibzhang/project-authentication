@@ -26,6 +26,10 @@ export class AuthenticationService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
+  public get currentUserValue(){
+    return this.currentUserSubject.value;
+  }
+
   login(user: User): Observable<User>{
     const url = `${environment.apiUrl}/users/authenticate`;
     return this.http.post<User>(url, user, httpOptions).pipe(

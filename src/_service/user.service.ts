@@ -26,7 +26,7 @@ export class UserService {
   // Read all users information: for testing
   read(): Observable<User[]>{
     const url = `${environment.apiUrl}/users`;
-    return this.http.get<User[]>(url).pipe();
+    return this.http.get<User[]>(url, httpOptions).pipe();
   } 
   update(){}
   delete(){}

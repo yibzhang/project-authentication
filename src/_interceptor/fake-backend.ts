@@ -9,7 +9,7 @@ export class FakeBackendInterceptor implements HttpInterceptor{
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const {url, method, headers, body} = request;
 
-    //console.log({url, method, headers, body});
+    //console.log(request.headers);
 
     return of(null)
     .pipe(mergeMap(routeHandle))
@@ -28,8 +28,12 @@ export class FakeBackendInterceptor implements HttpInterceptor{
 
     function authenticate(){
       const {email, password} = body;
-      const user = users.find(x => x.email === email && x.password === password);
-      return user? okResponse(200, {id: user.id, email: user.email, token: 'fake-jwt-token'}) : errorResponse;      
+      const user = users.find(x => x.email === email);
+      if(user){
+        if(user.password == password) return okResponse(200, {id: user.id, email: user.email, token: 'fake-jwt-token'});
+        return errorResponse("User password is incorrect");
+      }
+      return errorResponse("User can't be found");
     }
 
     function okResponse(res_number: number, res_body?){
@@ -37,7 +41,7 @@ export class FakeBackendInterceptor implements HttpInterceptor{
     }
 
     function errorResponse(err_message: string){
-      return throwError(err_message);
+      return throwError({error: err_message});
     }
 
   }
