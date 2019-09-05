@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root'})
 export class AuthGuard implements CanActivate {
   constructor(
+    private router: Router,
     private authenticationService: AuthenticationService
   ){};
 
@@ -16,6 +17,8 @@ export class AuthGuard implements CanActivate {
       return true;
     }
     // no user found in storage, return false
+    // this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['/login']);
     console.log(`auth guard output RouterStateSnapshot: ${state.url}`);
     return false;
   }
