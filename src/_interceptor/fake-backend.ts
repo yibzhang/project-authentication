@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, of} from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
@@ -30,19 +30,20 @@ export class FakeBackendInterceptor implements HttpInterceptor{
       const {email, password} = body;
       const user = users.find(x => x.email === email);
       if(user){
-        if(user.password == password) return okResponse(200, {id: user.id, email: user.email, token: 'fake-jwt-token'});
-        return errorResponse("User password is incorrect");
+        if(user.password == password) 
+          return of(new HttpResponse({
+            body: {id: user.id, email: user.email, token: 'fake-jwt-token'},
+            status: 200
+          }));
+
+        return throwError(new HttpErrorResponse({
+          error: "Incorrect password"
+        }));
       }
-      return errorResponse("User can't be found");
+      return throwError(new HttpErrorResponse({
+        error: "User doesn't exist"
+      }));
     }
-
-    function okResponse(res_number: number, res_body?){
-      return of(new HttpResponse({status: res_number, body: res_body}));
-    }
-
-    function errorResponse(err_message: string){
-      return throwError({error: err_message});
-    }
-
+   
   }
 }
