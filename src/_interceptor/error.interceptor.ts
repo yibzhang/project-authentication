@@ -13,11 +13,12 @@ export class ErrorInterceptor implements HttpInterceptor{
       // pipe response, to catchError
       catchError(
         err => {
+          // of error status is unauthorized, then log off
           if(err.status == 401){
             this.authenticationService.logout();                
             location.reload(true);
           }
-        return throwError(err.error.message || err.statusText);
+        return throwError(err);
         }
       )
 

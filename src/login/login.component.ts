@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       res => {
-        // TODO: active guard needs to be added
         this.router.navigate(['/userDetail']);
       },
       err => console.log(err),

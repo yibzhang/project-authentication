@@ -9,8 +9,6 @@ export class FakeBackendInterceptor implements HttpInterceptor{
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const {url, method, headers, body} = request;
 
-    //console.log(request.headers);
-
     return of(null)
     .pipe(mergeMap(routeHandle))
     .pipe(materialize())
@@ -22,7 +20,11 @@ export class FakeBackendInterceptor implements HttpInterceptor{
         case url.endsWith('/users/authenticate') && (method == 'POST'):
           return authenticate();
         default:
-          return next.handle(request);
+          return throwError(new HttpErrorResponse({
+            status: 404,
+            statusText: "Page not found"
+          }));
+          //return next.handle(request);
       }
     }
 
