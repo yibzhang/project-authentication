@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'userDetail', component: UserDetailComponent, canActive: [AuthGuard]},
+  { path: 'userDetail', component: UserDetailComponent, canActivate: [AuthGuard]},
   { path: 'product', component: ProductComponent}
 ]
 
@@ -35,6 +35,7 @@ const routes: Routes = [
                   ReactiveFormsModule
                 ],
   providers:    [ 
+                  AuthGuard,
                   httpInterceptorProvider 
                 ],
 
