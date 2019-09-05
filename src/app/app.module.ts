@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 // Routers
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './../_guard/auth.guard';
 // Forms
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,7 +21,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'userDetail', component: UserDetailComponent},
+  { path: 'userDetail', component: UserDetailComponent, canActive: [AuthGuard]},
   { path: 'product', component: ProductComponent}
 ]
 
