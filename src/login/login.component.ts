@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  // TODO: display server return error and jump to userDetail page with user id as url param.
   onSubmit(){
     return this.authenticationService.login(this.loginFormGroup.value)
     .pipe(first())
