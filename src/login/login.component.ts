@@ -8,6 +8,8 @@ import { AuthenticationService } from './../_service/authentication.service';
 import { User } from '../_model/User';
 
 import { first } from 'rxjs/operators';
+import { ValidatorPrintErrorComponent } from './../validator/validator-print-error.component';
+import { forbiddenNameValidator } from './../_validator/custom.validator';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +19,12 @@ import { first } from 'rxjs/operators';
 
 export class LoginComponent implements OnInit {
   loginFormGroup = this.loginFormBuilder.group({
-      email   : [''],
+      //email   : new FormControl('', [Validators.email, forbiddenNameValidator(/fuck/i)]),
+      email   : new FormControl('', [Validators.email, Validators.minLength(10)]),
+
       password: ['']
     });
-  
+
   constructor(private loginFormBuilder: FormBuilder,
               private router: Router,
               private userService: UserService,

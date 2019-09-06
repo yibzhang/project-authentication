@@ -23,6 +23,13 @@
           <div class="form-group login-card-form-group-btn-div">
             <button type="submit" class="btn login-card-form-group-btn">Submit</button>
           </div>
+          
+          <div *ngIf="loginFormGroup.controls['email'].invalid">
+            <app-validator-print-error>
+
+            </app-validator-print-error>
+          </div>
+
         </form>        
       </div>
     </div>
