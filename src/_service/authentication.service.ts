@@ -5,13 +5,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './../_model/user';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
-  }),
-  observe: 'response'
-};
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +26,20 @@ export class AuthenticationService {
 
   login(user: User): Observable<any>{
     const url = `${environment.apiUrl}/users/authenticate`;
-    return this.http.post(url, user, httpOptions);
+    return this.http.post<any>(url, user,
+      { headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'my-auth-token'}),
+        observe: 'response'}
+    ).pipe(
+      map(res => {
+        // TODO : Do we need to check the response status here???
+        if(res.body.user && res.body.token){
+          localStorage.removeItem(this.currentUserTag);
+          localStorage.setItem(this.currentUserTag, JSON.stringify(res.body.user));
+          this.currentUserSubject.next(res.body.user);
+        }
+        return res;
+      }),
+    );
     /*return this.http.post<User>(url, user, httpOptions).pipe(
       map(user => {
         // login successfully return user info and token

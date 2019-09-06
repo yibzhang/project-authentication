@@ -36,11 +36,8 @@ export class LoginComponent implements OnInit {
     return this.authenticationService.login(this.loginFormGroup.value)
     .pipe(first())
     .subscribe(
-      res => {
-        console.log(res);
-        //this.router.navigate(['/userDetail']);
-      },
-      err => console.log(err),
+      res => console.log(res),
+      err => console.log(err.error),
     );
   }
 
