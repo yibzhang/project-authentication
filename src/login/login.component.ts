@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       res => console.log(res),
-      err => console.log(err.error),
+      err => console.log(err),
     );
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable,throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError,retry } from 'rxjs/operators';
 import { AuthenticationService } from './../_service/authentication.service';
 
 @Injectable()
@@ -10,19 +10,31 @@ export class ErrorInterceptor implements HttpInterceptor{
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     return next.handle(request).pipe(
-      
+      retry(1),
       // pipe response, to catchError
-      catchError(
-        err => {
-          // of error status is unauthorized, then log off
-          if(err.status == 401){
-            this.authenticationService.logout();                
-            location.reload(true);
+      catchError((errorResponse: HttpErrorResponse) => {
+        let errorMessage = '';
+        // reform error message
+        if(errorResponse.error instanceof ErrorEvent){
+          // client-side error
+          errorMessage = `Client Error: ${errorResponse.error.message}`;
+        } else {
+          // server-side error
+          errorMessage = `Server Error Code: ${errorResponse.status}\nMessage: ${errorResponse.message}`;
+        
+          // server-side error, check error status
+          switch(errorResponse.status){
+            case 401:{
+              this.authenticationService.logout();
+              location.reload(true);
+            }
+            default:{}
           }
-        return throwError(err);
         }
-      )
 
+        // TODO : Error Message is not used any where
+        return throwError(errorResponse);
+      }),
     );
   }
 }
