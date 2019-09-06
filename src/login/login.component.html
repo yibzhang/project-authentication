@@ -13,6 +13,12 @@
           <div class="form-group login-card-form-group">
             <label class="login-card-form-group-label">EMAIL</label>
             <input type="text" class="form-control" formControlName="email">
+            <div *ngIf="loginFormGroup.controls['email'].invalid">
+              {{loginFormGroup.controls['email'].minlength}}
+              <app-validator-print-error [control]="loginFormGroup.controls['email']">
+              </app-validator-print-error>
+            </div>
+
           </div>
           <!-- password -->
           <div class="form-group login-card-form-group">
@@ -22,14 +28,7 @@
           <!-- button -->
           <div class="form-group login-card-form-group-btn-div">
             <button type="submit" class="btn login-card-form-group-btn">Submit</button>
-          </div>
-          
-          <div *ngIf="loginFormGroup.controls['email'].invalid">
-            <app-validator-print-error>
-
-            </app-validator-print-error>
-          </div>
-
+          </div>        
         </form>        
       </div>
     </div>

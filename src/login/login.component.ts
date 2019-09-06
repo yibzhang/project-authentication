@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   loginFormGroup = this.loginFormBuilder.group({
       //email   : new FormControl('', [Validators.email, forbiddenNameValidator(/fuck/i)]),
       email   : new FormControl('', [Validators.email, Validators.minLength(10)]),
-
       password: ['']
     });
 
