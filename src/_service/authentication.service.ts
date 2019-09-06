@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './../_model/user';
@@ -9,7 +9,8 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
     'Authorization': 'my-auth-token'
-  })
+  }),
+  observe: 'response'
 };
 
 @Injectable({
@@ -30,9 +31,10 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(user: User): Observable<User>{
+  login(user: User): Observable<any>{
     const url = `${environment.apiUrl}/users/authenticate`;
-    return this.http.post<User>(url, user, httpOptions).pipe(
+    return this.http.post(url, user, httpOptions);
+    /*return this.http.post<User>(url, user, httpOptions).pipe(
       map(user => {
         // login successfully return user info and token
         if(user && user.token){
@@ -42,7 +44,7 @@ export class AuthenticationService {
         }
         return user;
       })
-    );
+    );*/
   }
 
   logout(){

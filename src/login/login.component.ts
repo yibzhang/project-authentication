@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       res => {
-        this.router.navigate(['/userDetail']);
+        console.log(res);
+        //this.router.navigate(['/userDetail']);
       },
       err => console.log(err),
     );
