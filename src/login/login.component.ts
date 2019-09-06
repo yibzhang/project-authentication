@@ -9,7 +9,7 @@ import { User } from '../_model/User';
 
 import { first } from 'rxjs/operators';
 import { ValidatorPrintErrorComponent } from './../validator/validator-print-error.component';
-import { forbiddenNameValidator } from './../_validator/custom.validator';
+import { forbiddenNameValidator } from './../validator/custom.validator';
 
 @Component({
   selector: 'app-login',
@@ -19,9 +19,8 @@ import { forbiddenNameValidator } from './../_validator/custom.validator';
 
 export class LoginComponent implements OnInit {
   loginFormGroup = this.loginFormBuilder.group({
-      //email   : new FormControl('', [Validators.email, forbiddenNameValidator(/fuck/i)]),
-      email   : new FormControl('', [Validators.email, Validators.minLength(10)]),
-      password: ['']
+      email   : new FormControl('', [Validators.required, Validators.email, forbiddenNameValidator(/fuck/i)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)])
     });
 
   constructor(private loginFormBuilder: FormBuilder,

@@ -1,10 +1,12 @@
 <div class="text-danger small" *ngIf="control && control.errors && (control.dirty || control.touched)">
   <!-- required -->
-  <div *ngIf="control.errors.required">This field is required</div>
+  <li *ngIf="control.errors.required">This field is required</li>
   <!-- email -->
-  <div *ngIf="control.errors.email">Email is invalid</div>
+  <li *ngIf="control.errors.email">Email is invalid</li>
   <!-- minlength -->
-  <div *ngIf="control.errors.minlength">
+  <li *ngIf="control.errors.minlength">
     Length {{control.errors.minlength.actualLength}} < {{control.errors.minlength.requiredLength}}
-  </div>
+  </li>
+  <!-- custom validation -->
+  <li *ngIf="control.errors.forbiddenName">Invalid name</li>
 </div>
