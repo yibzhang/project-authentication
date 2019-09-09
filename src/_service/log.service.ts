@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LogService {
-  logs: string[];
-  errors: string[];
+  logs: string[] = [];
+  errors: string[] = [];
 
-  constructor() { }
+  constructor() {}
   // Add errors
   addErrors(error: string){
     this.errors.push(error);
@@ -16,6 +16,8 @@ export class LogService {
   clearErrors(){
     this.errors = [];
   }
+
+
   // Add logs
   addLogs(log: string){
     this.logs.push(log);

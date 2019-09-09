@@ -10,6 +10,7 @@ import { User } from '../_model/User';
 
 import { first } from 'rxjs/operators';
 import { ValidatorPrintErrorComponent } from './../validator/validator-print-error.component';
+import { ErrorComponent } from './../error/error.component';
 import { forbiddenNameValidator } from './../validator/custom.validator';
 
 @Component({
@@ -40,7 +41,8 @@ export class LoginComponent implements OnInit {
     .subscribe(
       res => console.log(res),
       err => {
-        console.log(err);
+        //console.log(err);
+        this.logService.clearErrors();
         this.logService.addErrors(err.error);
       }
     );

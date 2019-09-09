@@ -1,3 +1,5 @@
-<div class="text-danger small" *ngIf="this.errors.size">
-  {{this.errors.size}}
+<div class="text-danger small" *ngIf="errors.length">
+  <div *ngFor="let error of errors">
+    <li>{{error}}</li>
+  </div>
 </div>

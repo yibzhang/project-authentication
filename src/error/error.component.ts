@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./error.component.css']
 })
 export class ErrorComponent {
+  
   @Input("errors")
   errors: string[];
 }
