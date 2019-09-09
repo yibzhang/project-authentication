@@ -15,6 +15,7 @@ import { RegisterComponent } from './../register/register.component';
 import { UserDetailComponent } from './../user-detail/user-detail.component';
 import { ProductComponent } from './../product/product.component';
 import { ValidatorPrintErrorComponent } from './../validator/validator-print-error.component';
+import { ErrorComponent } from './../error.omponent';
 // Interceptors
 import { httpInterceptorProvider } from './../_interceptor';
 
@@ -46,7 +47,8 @@ const routes: Routes = [
                   RegisterComponent,
                   UserDetailComponent,
                   ProductComponent,
-                  ValidatorPrintErrorComponent
+                  ValidatorPrintErrorComponent,
+                  ErrorComponent
                 ],
 
   bootstrap:    [ 

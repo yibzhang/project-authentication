@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { UserService } from './../_service/user.service';
 import { AuthenticationService } from './../_service/authentication.service';
+import { LogService } from './../_service/log.service';
 import { User } from '../_model/User';
 
 import { first } from 'rxjs/operators';
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginFormBuilder: FormBuilder,
               private router: Router,
               private userService: UserService,
+              private logService: LogService,
               private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
@@ -37,7 +39,10 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       res => console.log(res),
-      err => console.log(err),
+      err => {
+        console.log(err);
+        this.logService.addErrors(err.error);
+      }
     );
   }
 
