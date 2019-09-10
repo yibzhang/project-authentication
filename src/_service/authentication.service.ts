@@ -13,8 +13,6 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  //currentUserTag = 'ecommerce-current-user';
-
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem(environment.currentUserTag)));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -22,6 +20,11 @@ export class AuthenticationService {
 
   public get currentUserValue(){
     return this.currentUserSubject.value;
+  }
+
+  public get loggedInStatus(){
+    if(this.currentUserSubject.value) return true;
+    return false;
   }
 
   login(user: User): Observable<any>{

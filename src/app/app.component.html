@@ -11,21 +11,23 @@
   <!-- Collapse content-->
   <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav ml-auto">
-      
-      <li class="nav-item">
+      <!-- login -->
+      <li class="nav-item" [hidden]="authenticationService.loggedInStatus">
         <a class="nav-link" href="/login">Login</a>
       </li>
-      <li class="nav-item">
+      <!-- register -->
+      <li class="nav-item" [hidden]="authenticationService.loggedInStatus">
         <a class="nav-link" href="/register">Register</a>
       </li>
-      
-      <li class="nav-item">
+      <!-- userDetail -->
+      <li class="nav-item" [hidden]="!authenticationService.loggedInStatus">
         <a class="nav-link" href="/userDetail">UserDetail</a>
       </li>
-      <li class="nav-item">
+      <!-- logout -->
+      <li class="nav-item" [hidden]="!authenticationService.loggedInStatus">
         <a class='nav-link' href="#logout" (click)="authenticationService.logout()">Logout</a>
-      </li>      
-
+      </li> 
+     
     </ul>
   </div>
 </nav>

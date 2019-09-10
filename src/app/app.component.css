@@ -14,3 +14,19 @@ align
   font-weight: bold;
   color: var(--global-font-color);
 }
+
+nav>a{
+  color: var(--global-font-color);
+}
+
+nav>a:hover{
+  color: var(--global-font-hover-color);
+}
+
+nav>div>ul>li>a{
+  color: var(--global-font-color);
+}
+
+nav>div>ul>li>a:hover{
+  color: var(--global-font-hover-color);
+}

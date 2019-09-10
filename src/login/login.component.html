@@ -32,8 +32,14 @@
           </div>
           <!-- button -->
           <div class="form-group login-card-form-group-btn-div">
-            <button type="submit" class="btn login-card-form-group-btn" [disabled]="loginFormGroup.invalid">Submit</button>
-          </div>        
+            <button type="submit" class="btn login-card-form-group-btn" [disabled]="loginFormGroup.invalid">
+              <div>
+                Submit
+                <!-- loading -->
+                <span class="spinner-border spinner-border-sm ml-1" role="status" aria-hidden="true" [hidden]="tru"></span>
+              </div>
+            </button>
+          </div>
         </form>        
       </div>
     </div>
