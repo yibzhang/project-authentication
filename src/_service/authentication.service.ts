@@ -13,10 +13,10 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  currentUserTag = 'ecommerce-current-user';
+  //currentUserTag = 'ecommerce-current-user';
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem(this.currentUserTag)));
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem(environment.currentUserTag)));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -33,8 +33,8 @@ export class AuthenticationService {
       map(res => {
         // TODO : Do we need to check the response status here???
         if(res.body.user && res.body.token){
-          localStorage.removeItem(this.currentUserTag);
-          localStorage.setItem(this.currentUserTag, JSON.stringify(res.body.user));
+          localStorage.removeItem(environment.currentUserTag);
+          localStorage.setItem(environment.currentUserTag, JSON.stringify(res.body.user));
           this.currentUserSubject.next(res.body.user);
         }
         return res;
@@ -54,7 +54,7 @@ export class AuthenticationService {
   }
 
   logout(){
-    localStorage.removeItem(this.currentUserTag);
+    localStorage.removeItem(environment.currentUserTag);
     this.currentUserSubject.next(null);
   }
 }

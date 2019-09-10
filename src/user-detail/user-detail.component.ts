@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // servie
-import { UserService } from './../_service/user.service';
+import { AuthenticationService } from './../_service/authentication.service';
 // model
 import { User } from './../_model/user';
 
@@ -11,21 +11,21 @@ import { User } from './../_model/user';
 })
 export class UserDetailComponent implements OnInit {
   userDetail: User;
-  users: User[];
 
-  constructor(private userService: UserService) {
+  constructor(private authenticationService: AuthenticationService) {
     this.userDetail = new User();
     this.userDetail.email    = 'N/A';
     this.userDetail.password = 'N/A';
   }
 
   ngOnInit() {
+    this.userDetail = this.authenticationService.currentUserValue;
   }
+
   // Only for testing
-  getAllUsers(){
+  /*getAllUsers(){
     this.userService.read().subscribe(
       (users: User[]) => {this.users = users}
     );
-  } 
-
+  }*/
 }

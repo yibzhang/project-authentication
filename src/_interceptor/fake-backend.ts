@@ -36,7 +36,8 @@ export class FakeBackendInterceptor implements HttpInterceptor{
         if(user.password == password) 
           return of(new HttpResponse({
             body: {id: user.id, email: user.email, token: 'fake-jwt-token'},
-            status: 200
+            status: 200,
+            url: `/userDetail`
           }));
 
         return throwError(new HttpErrorResponse({

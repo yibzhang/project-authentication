@@ -39,9 +39,13 @@ export class LoginComponent implements OnInit {
     return this.authenticationService.login(this.loginFormGroup.value)
     .pipe(first())
     .subscribe(
-      res => console.log(res),
+      res => {
+        // Login successful, jump to the return url page
+        if(res.status == 200){
+          this.router.navigate([res.url]);
+        }
+      },
       err => {
-        //console.log(err);
         this.logService.clearErrors();
         this.logService.addErrors(err.error);
       }
