@@ -14,11 +14,3 @@ align
   font-weight: bold;
   color: var(--global-font-color);
 }
-
-.my-navbar-brand{
-  color: var(--global-font-color);
-}
-
-.my-navbar-brand:hover{
-  color: var(--global-font-color);
-}

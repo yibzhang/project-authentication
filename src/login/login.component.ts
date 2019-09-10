@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       res => {
-        // Login successful, jump to the return url page
+        // Login successful, jump to the return url page        
         if(res.status == 200){
           this.router.navigate([res.url]);
         }

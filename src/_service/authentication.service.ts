@@ -31,8 +31,7 @@ export class AuthenticationService {
         observe: 'response'}
     ).pipe(
       map(res => {
-        // TODO : Do we need to check the response status here???
-        if(res.body.user && res.body.token){
+        if(res.body.user && res.body.user.token){
           localStorage.removeItem(environment.currentUserTag);
           localStorage.setItem(environment.currentUserTag, JSON.stringify(res.body.user));
           this.currentUserSubject.next(res.body.user);
@@ -40,23 +39,10 @@ export class AuthenticationService {
         return res;
       }),
     );
-    /*return this.http.post<User>(url, user, httpOptions).pipe(
-      map(user => {
-        // login successfully return user info and token
-        if(user && user.token){
-          // set user info into localStorage
-          localStorage.setItem(this.currentUserTag, JSON.stringify(user));
-          this.currentUserSubject.next(user);
-        }
-        return user;
-      })
-    );*/
   }
 
   logout(){
-    //console.log(localStorage.getItem(environment.currentUserTag));
     localStorage.removeItem(environment.currentUserTag);
-    //console.log(localStorage.getItem(environment.currentUserTag));
     this.currentUserSubject.next(null);
   }
 }
