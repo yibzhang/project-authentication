@@ -22,7 +22,7 @@
         <a class="nav-link" href="/userDetail" style="color:var(--global-font-color)">UserDetail</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#logout" ng-click="logout()" style="color:var(--global-font-color)">Logout</a>
+        <a class='nav-link' style="color:var(--global-font-color)" (click)="authenticationService.logout()">Logout</a>
       </li>      
     </ul>
   </div>

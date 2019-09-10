@@ -14,10 +14,5 @@ export class AppComponent  {
   constructor(private authenticationService: AuthenticationService,
               private router: Router
   ){};
-
-  logout(){
-    this.authenticationService.logout();
-    //localStorage.removeItem(environment.currentUserTag);
-    this.router.navigate(['login']);
-  };
+  
 }

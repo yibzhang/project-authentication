@@ -54,7 +54,9 @@ export class AuthenticationService {
   }
 
   logout(){
+    //console.log(localStorage.getItem(environment.currentUserTag));
     localStorage.removeItem(environment.currentUserTag);
+    //console.log(localStorage.getItem(environment.currentUserTag));
     this.currentUserSubject.next(null);
   }
 }
