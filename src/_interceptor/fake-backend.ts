@@ -3,10 +3,12 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, Htt
 import { Observable, throwError, of} from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-let users = [{id:1 , email: "test@test.com", password: "00000000"}];
+//let users = [{id:1 , email: "test@test.com", password: "00000000"}];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor{
+  private users = [{id:1 , email: "test@test.com", password: "00000000"}];
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const {url, method, headers, body} = request;
 
@@ -20,6 +22,8 @@ export class FakeBackendInterceptor implements HttpInterceptor{
       switch(true){
         case url.endsWith('/users/authenticate') && (method == 'POST'):
           return authenticate();
+        case url.endsWith('/users/create') && (method == "POST"):
+          return create();
         default:
           return throwError(new HttpErrorResponse({
             status: 404,
@@ -29,9 +33,20 @@ export class FakeBackendInterceptor implements HttpInterceptor{
       }
     }
 
+    // fake-backend user create
+    function create(){
+      let user = body;      
+      this.users.push(user)
+      console.log(this.users)      
+
+      //users.push();
+      return of(null);
+    }
+    
+    // fake-backend user authenticate
     function authenticate(){
       const {email, password} = body;
-      const user = users.find(x => x.email === email);
+      const user = this.users.find(x => x.email === email);
       if(user){
         if(user.password == password) 
           return of(new HttpResponse({
@@ -48,6 +63,6 @@ export class FakeBackendInterceptor implements HttpInterceptor{
         error: "User doesn't exist"
       }));
     }
-   
+
   }
 }

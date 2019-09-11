@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { User } from './../_model/user';
+import { UserService } from './../_service/user.service';
+
 import { forbiddenNameValidator,confirmPasswordValidator } from './../validator/custom.validator';
 
 @Component({
@@ -20,14 +23,22 @@ export class RegisterComponent implements OnInit {
     validator: confirmPasswordValidator('password', 'confirmPassword'),
   });
 
-  constructor(private registerFormBuilder: FormBuilder) { }
+  constructor(private registerFormBuilder: FormBuilder,
+              private userService: UserService) { }
 
   ngOnInit(){
     this.loading = false;
   }
 
   register(){
+    var user: User = {
+      email: this.registerFormGroup.value.email,
+      password: this.registerFormGroup.value.password
+    };
     this.loading = true;
-    console.log(this.registerFormGroup.value)
+    this.userService.create(user).subscribe(
+      res => {console.log(res)},
+      err => {console.log(err)}
+    );
   }
 }

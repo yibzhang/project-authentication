@@ -9,7 +9,7 @@ import { User } from './../_model/user';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {  
+export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -18,23 +18,25 @@ export class AuthenticationService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(){
+  public get currentUserValue() {
     return this.currentUserSubject.value;
   }
 
-  public get loggedInStatus(){
-    if(this.currentUserSubject.value) return true;
+  public get loggedInStatus() {
+    if (this.currentUserSubject.value) return true;
     return false;
   }
 
-  login(user: User): Observable<any>{
+  login(user: User): Observable<any> {
     const url = `${environment.apiUrl}/users/authenticate`;
     return this.http.post<any>(url, user,
-      { headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'my-auth-token'}),
-        observe: 'response'}
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'my-auth-token' }),
+        observe: 'response'
+      }
     ).pipe(
       map(res => {
-        if(res.body.user && res.body.user.token){
+        if (res.body.user && res.body.user.token) {
           localStorage.removeItem(environment.currentUserTag);
           localStorage.setItem(environment.currentUserTag, JSON.stringify(res.body.user));
           this.currentUserSubject.next(res.body.user);
@@ -44,7 +46,7 @@ export class AuthenticationService {
     );
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem(environment.currentUserTag);
     this.currentUserSubject.next(null);
   }

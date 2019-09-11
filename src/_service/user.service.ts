@@ -22,7 +22,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   // crud
-  create(){}
+  create(user: User): Observable<any>{
+    const url = `${environment.apiUrl}/users/create`
+    return this.http.post<User>(url, User, httpOptions);
+  }
+
   // Read all users information: for testing
   read(): Observable<User[]>{
     const url = `${environment.apiUrl}/users`;
