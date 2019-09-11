@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.loading = false;
+        //console.log(err);
         this.logService.clearErrors();
         this.logService.addErrors(err.error);
       }

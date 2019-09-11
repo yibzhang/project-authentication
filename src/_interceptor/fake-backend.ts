@@ -2,12 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, of} from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import { User } from './../_model/user';
 
 //let users = [{id:1 , email: "test@test.com", password: "00000000"}];
+let users: User[] = [];
+let id_counter: number = 0;
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor{
-  private users = [{id:1 , email: "test@test.com", password: "00000000"}];
+
+  constructor(){
+    id_counter++;
+    var user: User = {
+      id:id_counter,
+      email:'1@1.com',
+      password:'12345678',
+      token: 'fake-token'
+    };
+    users.push(user);
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     const {url, method, headers, body} = request;
@@ -35,22 +48,35 @@ export class FakeBackendInterceptor implements HttpInterceptor{
 
     // fake-backend user create
     function create(){
-      let user = body;      
-      this.users.push(user)
-      console.log(this.users)      
-
-      //users.push();
-      return of(null);
+      const {email, password} = body;
+      if(users.find(x => x.email == email)){
+        return throwError(new HttpErrorResponse({
+          error: 'Email has been used'
+        }));
+      }
+      // user email does not exist in db, then add       
+      id_counter++;
+      var user: User = {
+        id:id_counter,
+        email:email,
+        password:password,
+        token: generate_token()
+      };
+      users.push(user);
+      return of(new HttpResp({
+        body: {user: {id: user.id, email: user.email, token: user.token}},
+        status: 200,
+      }));
     }
     
     // fake-backend user authenticate
     function authenticate(){
       const {email, password} = body;
-      const user = this.users.find(x => x.email === email);
+      const user = users.find(x => x.email === email);
       if(user){
         if(user.password == password) 
           return of(new HttpResponse({
-            body: {user: {id: user.id, email: user.email, token: 'fake-jwt-token'}},
+            body: {user: {id: user.id, email: user.email, token: user.token}},
             status: 200,
             url: `/userDetail`
           }));
@@ -62,6 +88,10 @@ export class FakeBackendInterceptor implements HttpInterceptor{
       return throwError(new HttpErrorResponse({
         error: "User doesn't exist"
       }));
+    }
+
+    function generate_token(){
+      return Math.random().toString(36).substring(7);
     }
 
   }

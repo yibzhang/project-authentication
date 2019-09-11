@@ -8,13 +8,6 @@ import { catchError, retry } from 'rxjs/operators';
 // Model
 import { User } from './../_model/user';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
-
 @Injectable({
   providedIn: 'root',
 })
@@ -24,14 +17,20 @@ export class UserService {
   // crud
   create(user: User): Observable<any>{
     const url = `${environment.apiUrl}/users/create`
-    return this.http.post<User>(url, User, httpOptions);
+    return this.http.post<any>(url, user,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'my-auth-token' }),
+        observe: 'response'
+      }
+    );
   }
 
   // Read all users information: for testing
-  read(): Observable<User[]>{
+  /*read(): Observable<User[]>{
     const url = `${environment.apiUrl}/users`;
     return this.http.get<User[]>(url, httpOptions).pipe();
-  } 
+  }*/
+  read(){}
   update(){}
   delete(){}
 }
