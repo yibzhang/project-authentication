@@ -20,6 +20,8 @@ import { forbiddenNameValidator } from './../validator/custom.validator';
 })
 
 export class LoginComponent implements OnInit {
+  private loading: boolean;
+
   loginFormGroup = this.loginFormBuilder.group({
       email   : new FormControl('', [Validators.required, Validators.email, forbiddenNameValidator(/fuck/i)]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
@@ -32,20 +34,24 @@ export class LoginComponent implements OnInit {
               private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    this.loading = false;
   }
 
   // TODO: display server return error and jump to userDetail page with user id as url param.
   onSubmit(){
+    this.loading = true;
     return this.authenticationService.login(this.loginFormGroup.value)
     .pipe(first())
     .subscribe(
       res => {
+        this.loading = false;
         // Login successful, jump to the return url page        
         if(res.status == 200){
           this.router.navigate([res.url]);
-        }
+        }        
       },
       err => {
+        this.loading = false;
         this.logService.clearErrors();
         this.logService.addErrors(err.error);
       }

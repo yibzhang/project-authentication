@@ -8,25 +8,45 @@
       <div class="col-lg-12 register-card-title">register</div>      
       <!-- register card body -->
       <div class="col-lg-12 register-card-form">
-        <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()" class="test">
+        <form [formGroup]="registerFormGroup" (ngSubmit)="register()" class="test">
           <!-- email -->
           <div class="form-group register-card-form-group">
             <label class="register-card-form-group-label">EMAIL</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="email">
+            <!-- print validator error -->
+            <div *ngIf="registerFormGroup.controls['email'].invalid">
+              <app-validator-print-error [control]="registerFormGroup.controls['email']">
+              </app-validator-print-error>
+            </div>
           </div>
           <!-- password -->
           <div class="form-group register-card-form-group">
             <label class="register-card-form-group-label">PASSWORD</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" formControlName="password">
+            <!-- print validator error -->
+            <div *ngIf="registerFormGroup.controls['password'].invalid">
+              <app-validator-print-error [control]="registerFormGroup.controls['password']">
+              </app-validator-print-error>
+            </div>
           </div>
           <!-- confirm password -->
           <div class="form-group register-card-form-group">
             <label class="register-card-form-group-label">CONFIRM PASSWORD</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" formControlName="confirmPassword">
+            <div *ngIf="registerFormGroup.controls['confirmPassword'].invalid">
+              <app-validator-print-error [control]="registerFormGroup.controls['confirmPassword']">
+              </app-validator-print-error>
+            </div>
           </div>          
           <!-- button -->
           <div class="form-group register-card-form-group-btn-div">
-            <button type="submit" class="btn register-card-form-group-btn">Submit</button>
+            <button type="submit" class="btn register-card-form-group-btn" [disabled]="registerFormGroup.invalid">
+              <div>
+                Register
+                <!-- loading -->
+                <span class="spinner-border spinner-border-sm ml-1" role="status" aria-hidden="true" [hidden]="!loading"></span>
+              </div>
+            </button>
           </div>
         </form>        
       </div>

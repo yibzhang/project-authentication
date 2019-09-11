@@ -8,5 +8,6 @@
     Length {{control.errors.minlength.actualLength}} < {{control.errors.minlength.requiredLength}}
   </li>
   <!-- custom validation -->
-  <li *ngIf="control.errors.forbiddenName">Invalid name</li>
+  <li *ngIf="control.errors.forbiddenName">ForbiddenName: '{{control.errors.forbiddenName}}'</li>
+  <li *ngIf="control.errors.confirmPassword">Confirm Password {{control.errors.confirmPassword}}</li>
 </div>

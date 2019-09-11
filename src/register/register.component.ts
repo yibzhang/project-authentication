@@ -2,22 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { forbiddenNameValidator,confirmPasswordValidator } from './../validator/custom.validator';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerFormGroup : FormGroup;
+  private loading: boolean;
 
-  constructor(private registerFormBuilder : FormBuilder) { }
+  registerFormGroup = this.registerFormBuilder.group({
+    email: new FormControl('', [Validators.required, Validators.email, forbiddenNameValidator(/fuck/i)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    confirmPassword: new FormControl('', [Validators.required])
+  }, {
+    validator: confirmPasswordValidator('password', 'confirmPassword'),
+  });
 
-  ngOnInit() {
-    this.registerFormGroup = this.registerFormBuilder.group({
-      email           : ['', Validators.required],
-      password        : ['', Validators.required],
-      confirmpassword : ['', Validators.required]
-    }); 
+  constructor(private registerFormBuilder: FormBuilder) { }
+
+  ngOnInit(){
+    this.loading = false;
   }
 
+  register(){
+    this.loading = true;
+    console.log(this.registerFormGroup.value)
+  }
 }
