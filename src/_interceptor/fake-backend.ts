@@ -37,6 +37,8 @@ export class FakeBackendInterceptor implements HttpInterceptor{
           return authenticate();
         case url.endsWith('/users/create') && (method == "POST"):
           return create();
+        case (url.match(/test/i).length() !=):
+
         default:
           return throwError(new HttpErrorResponse({
             status: 404,

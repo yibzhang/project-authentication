@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './../login/login.component';
+import { FindPasswordComponent } from './../find-password/find-password.component';
 import { RegisterComponent } from './../register/register.component';
 import { UserDetailComponent } from './../user-detail/user-detail.component';
 import { ProductComponent } from './../product/product.component';
@@ -24,6 +25,7 @@ import { httpInterceptorProvider } from './../_interceptor';
 const routes: Routes = [
   { path: '', component: LoginComponent, canActivate: [NotLoggedInGuard]},
   { path: 'login', component: LoginComponent, canActivate: [NotLoggedInGuard]},
+  { path: 'findpassword', component: FindPasswordComponent, canActivate: [NotLoggedInGuard]},
   { path: 'register', component: RegisterComponent, canActivate: [NotLoggedInGuard]},
   { path: 'userDetail', component: UserDetailComponent, canActivate: [LoggedInGuard]},
   { path: 'product', component: ProductComponent},
@@ -48,6 +50,7 @@ const routes: Routes = [
   declarations: [ 
                   AppComponent, 
                   LoginComponent,
+                  FindPasswordComponent,
                   RegisterComponent,
                   UserDetailComponent,
                   ProductComponent,

@@ -28,7 +28,18 @@ export class UserService {
     );
   }
 
-  read(){}
+  read(email: string): Observable<any>{
+    const url = `${environment.apiUrl}/users/read?email=${email}`;
+    return this.http.get<any>(url,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'my-auth-token' }),
+        observe: 'response'
+      }
+    ).pipe(
+      // Get users successfully
+    );
+  }
+
   update(){}
   delete(){}
 }
