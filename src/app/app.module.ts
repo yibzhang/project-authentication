@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 // Routers
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './../_guard/auth.guard';
+import { LoggedInGuard } from './../_guard/logged-in.guard';
+import { NotLoggedInGuard } from './../_guard/not-logged-in.guard';
 // Forms
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,15 +17,17 @@ import { UserDetailComponent } from './../user-detail/user-detail.component';
 import { ProductComponent } from './../product/product.component';
 import { ValidatorPrintErrorComponent } from './../validator/validator-print-error.component';
 import { ErrorComponent } from './../error/error.component';
+import { PageNotFoundComponent } from './../page-not-found/page-not-found.component';
 // Interceptors
 import { httpInterceptorProvider } from './../_interceptor';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: 'userDetail', component: UserDetailComponent, canActivate: [AuthGuard]},
-  { path: 'product', component: ProductComponent}
+  { path: '', component: LoginComponent, canActivate: [NotLoggedInGuard]},
+  { path: 'login', component: LoginComponent, canActivate: [NotLoggedInGuard]},
+  { path: 'register', component: RegisterComponent, canActivate: [NotLoggedInGuard]},
+  { path: 'userDetail', component: UserDetailComponent, canActivate: [LoggedInGuard]},
+  { path: 'product', component: ProductComponent},
+  { path: '**', component: PageNotFoundComponent}
 ]
 
 @NgModule({
@@ -37,7 +40,8 @@ const routes: Routes = [
                   ReactiveFormsModule
                 ],
   providers:    [ 
-                  AuthGuard,
+                  NotLoggedInGuard,
+                  LoggedInGuard,
                   httpInterceptorProvider 
                 ],
 
@@ -48,7 +52,8 @@ const routes: Routes = [
                   UserDetailComponent,
                   ProductComponent,
                   ValidatorPrintErrorComponent,
-                  ErrorComponent
+                  ErrorComponent,
+                  PageNotFoundComponent
                 ],
 
   bootstrap:    [ 

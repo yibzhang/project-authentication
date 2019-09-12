@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 // Model
+import { map } from 'rxjs/operators';
 import { User } from './../_model/user';
 
 @Injectable({
@@ -22,14 +23,11 @@ export class UserService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'my-auth-token' }),
         observe: 'response'
       }
+    ).pipe(
+      // register successfully
     );
   }
 
-  // Read all users information: for testing
-  /*read(): Observable<User[]>{
-    const url = `${environment.apiUrl}/users`;
-    return this.http.get<User[]>(url, httpOptions).pipe();
-  }*/
   read(){}
   update(){}
   delete(){}

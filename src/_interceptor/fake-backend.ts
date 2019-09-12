@@ -63,7 +63,7 @@ export class FakeBackendInterceptor implements HttpInterceptor{
         token: generate_token()
       };
       users.push(user);
-      return of(new HttpResp({
+      return of(new HttpResponse({
         body: {user: {id: user.id, email: user.email, token: user.token}},
         status: 200,
       }));

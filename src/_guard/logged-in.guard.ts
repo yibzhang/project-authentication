@@ -4,22 +4,18 @@ import { AuthenticationService } from './../_service/authentication.service';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root'})
-export class AuthGuard implements CanActivate {
+export class LoggedInGuard implements CanActivate {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
   ){};
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    let currentUser = this.authenticationService.currentUserValue;
-    // if currentUser can be found in storage, then user has been logged in, return true
-    if(currentUser){
+    if(this.authenticationService.loggedInStatus){
       return true;
     }
-    // no user found in storage, return false
-    // this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+
     this.router.navigate(['/login']);
-    console.log(`auth guard output RouterStateSnapshot: ${state.url}`);
     return false;
   }
 }
