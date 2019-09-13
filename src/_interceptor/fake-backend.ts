@@ -37,7 +37,8 @@ export class FakeBackendInterceptor implements HttpInterceptor{
           return authenticate();
         case url.endsWith('/users/create') && (method == "POST"):
           return create();
-        case (url.match(/test/i).length() !=):
+        case (url.match(/users\/read/i).length > 0):
+          return read();
 
         default:
           return throwError(new HttpErrorResponse({
@@ -71,6 +72,15 @@ export class FakeBackendInterceptor implements HttpInterceptor{
       }));
     }
     
+    // fake-backend user read
+    function read(){
+      console.log('')
+      return of(new HttpResponse({
+        body: null,
+        status: 0,
+      }))
+    }
+
     // fake-backend user authenticate
     function authenticate(){
       const {email, password} = body;
