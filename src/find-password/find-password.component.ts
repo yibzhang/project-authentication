@@ -25,7 +25,11 @@ export class FindPasswordComponent implements OnInit {
 
   onSubmit(){
     this.loading = true;
-    console.log(this.findPasswordFormGroup.value)
-    this.userService.update();
+    var email = this.findPasswordFormGroup.controls['email'].value;
+
+    this.userService.read(email).subscribe(
+      res => {console.log(res);},
+      err => {console.log(err);},
+    );
   }
 }

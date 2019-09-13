@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../environments/environment';
 // http
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 // rxjs
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -13,30 +13,33 @@ import { User } from './../_model/user';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) { }
+  private headers: HttpHeaders = new HttpHeaders()
+                                    .set('Content-Type', 'application/json')
+                                    .set('Authorization', 'my-auth-token');
+
+  constructor(private http: HttpClient) {
+  }
 
   // crud
   create(user: User): Observable<any>{
-    const url = `${environment.apiUrl}/users/create`
-    return this.http.post<any>(url, user,
+    return this.http.post<any>(
+      environment.apiUrl + '/users',
+      user,
       {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'my-auth-token' }),
+        headers: this.headers,
         observe: 'response'
-      }
-    ).pipe(
-      // register successfully
-    );
+      },
+    )
   }
 
   read(email: string): Observable<any>{
-    const url = `${environment.apiUrl}/users/read?email=${email}`;
-    return this.http.get<any>(url,
+    return this.http.get<any>(
+      environment.apiUrl + '/users',
       {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'my-auth-token' }),
-        observe: 'response'
-      }
-    ).pipe(
-      // Get users successfully
+        headers: this.headers,
+        observe: 'response',
+        params: new HttpParams().set('email', email),
+      },
     );
   }
 

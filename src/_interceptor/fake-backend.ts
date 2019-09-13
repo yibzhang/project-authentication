@@ -35,9 +35,9 @@ export class FakeBackendInterceptor implements HttpInterceptor{
       switch(true){
         case url.endsWith('/users/authenticate') && (method == 'POST'):
           return authenticate();
-        case url.endsWith('/users/create') && (method == "POST"):
+        case url.endsWith('/users') && (method == "POST"):
           return create();
-        case (url.match(/users\/read/i).length > 0):
+        case url.endsWith('/users') && (method == "GET"):
           return read();
 
         default:
@@ -74,7 +74,7 @@ export class FakeBackendInterceptor implements HttpInterceptor{
     
     // fake-backend user read
     function read(){
-      console.log('')
+      console.log(request.params.get('email'));
       return of(new HttpResponse({
         body: null,
         status: 0,
