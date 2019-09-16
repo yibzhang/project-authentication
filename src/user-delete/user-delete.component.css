@@ -1,0 +1,68 @@
+/*
+margin
+size
+color
+font size
+font color
+align
+*/
+
+.userDelete-card {
+  margin-top: 100px;
+  height: auto;
+  background: var(--global-block-background-color);
+  box-shadow: var(--global-block-shadow);
+  text-align: center;
+}
+
+.userDelete-card-title {
+  margin-top: 15px;
+  height: auto;
+  font-size: xx-large;
+  font-weight: bold;
+  color: var(--global-font-color);
+  text-align: center;
+}
+
+.userDelete-card-form {
+  margin-top: 25px;
+  text-align: left;
+}
+
+.userDelete-card-form-group {
+  margin-top: 25px;
+}
+
+.userDelete-card-form-group-label {
+  font-size: small;
+  color: var(--global-font-color);
+}
+
+.userDelete-card-form-group-btn-div{ 
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-right: 0px;
+  text-align: right;
+}
+
+.userDelete-card-form-group-btn {
+  font-size: medium;
+  font-weight: bold;
+  color: var(--global-font-color);
+  border-color: var(--global-block-border-color);
+}
+
+.userDelete-card-form-group-btn:hover{
+  font-size: medium;
+  font-weight: bold;
+  color: var(--global-font-color);
+  background: var(--global-block-background-hover-color);
+}
+
+input:focus{
+  background-color:rgba(255, 255, 255, 0.8);
+}
+
+label {
+  margin-bottom: 0px;
+}

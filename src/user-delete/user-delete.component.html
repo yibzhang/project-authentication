@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-2"></div>
+
+    <!-- userDelete card -->
+    <div class="col-lg-6 col-md-8 userDelete-card">
+      <!-- userDelete card title -->
+      <div class="col-lg-12 userDelete-card-title">Find Password</div>      
+      <!-- userDelete card body -->
+      
+      <app-message [messages]="this.logService.logs"></app-message>
+      <app-error [errors]="this.logService.errors"></app-error>
+      <!-- email -->
+      <div class="form-group userDelete-card-form-group">
+        <label class="userDelete-card-form-group-label">EMAIL</label>
+        <input type="text" class="form-control" formControlName="email">
+        <!-- print validator error -->
+        <div *ngIf="userDeleteFormGroup.controls['email'].invalid">
+          <app-validator-print-error [control]="userDeleteFormGroup.controls['email']">
+          </app-validator-print-error>
+        </div>
+      </div>
+      <!-- button -->
+      <div class="form-group userDelete-card-form-group-btn-div">
+        <button (click)="deleteUser()" class="btn userDelete-card-form-group-btn" [disabled]="userDeleteFormGroup.invalid">
+          <div>
+            Delete User
+            <!-- loading -->
+            <span class="spinner-border spinner-border-sm ml-1" role="status" aria-hidden="true" [hidden]="!loading"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-2"></div>
+  </div>
+</div>
+
+
+

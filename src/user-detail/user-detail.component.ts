@@ -7,7 +7,7 @@ import { User } from './../_model/user';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.css']
+  styleUrls: ['./usser-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
   userDetail: User;
@@ -21,11 +21,4 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.userDetail = this.authenticationService.currentUserValue;
   }
-
-  // Only for testing
-  /*getAllUsers(){
-    this.userService.read().subscribe(
-      (users: User[]) => {this.users = users}
-    );
-  }*/
 }

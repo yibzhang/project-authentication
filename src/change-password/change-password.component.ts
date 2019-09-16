@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { User } from './../_model/user';
 import { AuthenticationService } from './../_service/authentication.service';
 import { LogService } from './../_service/log.service';
 import { UserService } from './../_service/user.service';
+
 
 import { forbiddenNameValidator,confirmPasswordValidator } from './../validator/custom.validator';
 
@@ -24,7 +26,8 @@ export class ChangePasswordComponent implements OnInit {
     validator: confirmPasswordValidator('password', 'confirmPassword'), 
   });
 
-  constructor(private authenticationService: AuthenticationService,
+  constructor(private rotuer: Router,
+              private authenticationService: AuthenticationService,
               private logService: LogService,
               private userService: UserService,
               private formBuilder: FormBuilder) {
@@ -46,13 +49,17 @@ export class ChangePasswordComponent implements OnInit {
     this.userService.update(user).subscribe(
       res => {
         this.loading = false;
+        this.logService.clearErrors();
         this.logService.clearLogs();
         this.logService.addLogs(res.body.message);
+        // Password changed successfully, jump to userDetail page
+        this.rotuer.navigate([res.url]);
         //console.log(res);
       },
       err => {
         this.loading = false;  
         this.logService.clearErrors();
+        this.logService.clearLogs();
         this.logService.addErrors(err.error);
         //console.log(err);
       },

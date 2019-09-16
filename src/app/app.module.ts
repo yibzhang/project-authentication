@@ -16,6 +16,7 @@ import { FindPasswordComponent } from './../find-password/find-password.componen
 import { ChangePasswordComponent } from './../change-password/change-password.component';
 import { RegisterComponent } from './../register/register.component';
 import { UserDetailComponent } from './../user-detail/user-detail.component';
+import { UserDeleteComponent } from './../user-delete/user-delete.component';
 import { ProductComponent } from './../product/product.component';
 import { ValidatorPrintErrorComponent } from './../validator/validator-print-error.component';
 import { ErrorComponent } from './../error/error.component';
@@ -57,6 +58,7 @@ const routes: Routes = [
                   ChangePasswordComponent,
                   RegisterComponent,
                   UserDetailComponent,
+                  UserDeleteComponent,
                   ProductComponent,
                   ValidatorPrintErrorComponent,
                   ErrorComponent,
