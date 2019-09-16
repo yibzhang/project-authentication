@@ -39,6 +39,8 @@ export class FakeBackendInterceptor implements HttpInterceptor{
           return create();
         case url.endsWith('/users') && (method == "GET"):
           return read();
+        case url.endsWith('/users') && (method == "PUT"):
+          return update();
         default:
           return throwError(new HttpErrorResponse({
             status: 404,
@@ -83,6 +85,27 @@ export class FakeBackendInterceptor implements HttpInterceptor{
       }
       return throwError(new HttpErrorResponse({
         error: "User doesn't exist"
+      }));
+    }
+
+    function update(){
+      const {email, oldPassword, password} = request.body;
+      const user = users.find(x => x.email === email); 
+      if(user){
+        if(user.password == oldPassword){
+          user.password = password;
+          return of(new HttpResponse({
+            body: {message: "Password changed!"},
+            status: 200,
+            url: `/userDetail`
+          }));
+        }
+        return throwError(new HttpErrorResponse({
+          error: "Incorrect password",
+        }));
+      }
+      return throwError(new HttpErrorResponse({
+        error: "User doesn't exits, please log out"
       }));
     }
 

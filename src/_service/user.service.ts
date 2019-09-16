@@ -46,6 +46,7 @@ export class UserService {
   update(user: User){
     return this.http.put<any>(
       environment.apiUrl + '/users',
+      user,
       {
         headers: this.headers,
         observe: 'response',

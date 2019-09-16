@@ -39,14 +39,20 @@ export class ChangePasswordComponent implements OnInit {
     this.loading = true;
     let user: User = {
       email: this.email,
-      /oldPassword: this.changePasswordFormGroup.controls['oldPassword'].value,
+      oldPassword: this.changePasswordFormGroup.controls['oldPassword'].value,
       password: this.changePasswordFormGroup.controls['password'].value,
     };
 
     this.userService.update(user).subscribe(
-      res => {console.log(res)},
-      err => {console.log(err)}
-    );    
+      res => {
+        this.loading = false;
+        console.log(res);
+      },
+      err => {
+        this.loading = false;  
+        console.log(err);
+      },
+    );
   }
 
 }
