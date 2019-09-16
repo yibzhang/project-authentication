@@ -43,6 +43,15 @@ export class UserService {
     );
   }
 
-  update(){}
+  update(){
+    return this.http.put<any>(
+      environment.apiUrl + '/users',
+      {
+        headers: this.headers,
+        observe: 'response',
+      },
+    );
+  }
+
   delete(){}
 }
