@@ -46,11 +46,15 @@ export class ChangePasswordComponent implements OnInit {
     this.userService.update(user).subscribe(
       res => {
         this.loading = false;
-        console.log(res);
+        this.logService.clearLogs();
+        this.logService.addLogs(res.body.message);
+        //console.log(res);
       },
       err => {
         this.loading = false;  
-        console.log(err);
+        this.logService.clearErrors();
+        this.logService.addErrors(err.error);
+        //console.log(err);
       },
     );
   }
