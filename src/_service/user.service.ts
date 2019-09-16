@@ -43,7 +43,7 @@ export class UserService {
     );
   }
 
-  update(){
+  update(user: User){
     return this.http.put<any>(
       environment.apiUrl + '/users',
       {

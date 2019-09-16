@@ -42,10 +42,11 @@ export class ChangePasswordComponent implements OnInit {
       /oldPassword: this.changePasswordFormGroup.controls['oldPassword'].value,
       password: this.changePasswordFormGroup.controls['password'].value,
     };
-    //user.email = this.authenticationService.currentUserValue.email;
 
-    //console.log(this.changePasswordFormGroup.value);
-    this.userService.update();    
+    this.userService.update(user).subscribe(
+      res => {console.log(res)},
+      err => {console.log(err)}
+    );    
   }
 
 }
