@@ -10,8 +10,8 @@ export class JwtInterceptor implements HttpInterceptor{
   constructor(private authenticationService: AuthenticationService){};
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-    console.log('Jwt Request');
-    console.log(request);
+    //console.log('Jwt Request');
+    //console.log(request);
 
     let currentUser = this.authenticationService.currentUserValue;
 

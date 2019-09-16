@@ -10,6 +10,10 @@ import { User } from './../_model/user';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private headers: HttpHeaders = new HttpHeaders()
+                                  .set('Content-Type', 'application/json')
+                                  .set('Authorization', 'my-auth-token');
+
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -31,7 +35,7 @@ export class AuthenticationService {
     const url = `${environment.apiUrl}/users/authenticate`;
     return this.http.post<any>(url, user,
       {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'my-auth-token' }),
+        headers: this.headers,
         observe: 'response'
       }
     ).pipe(

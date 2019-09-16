@@ -39,7 +39,6 @@ export class FakeBackendInterceptor implements HttpInterceptor{
           return create();
         case url.endsWith('/users') && (method == "GET"):
           return read();
-
         default:
           return throwError(new HttpErrorResponse({
             status: 404,
@@ -74,11 +73,17 @@ export class FakeBackendInterceptor implements HttpInterceptor{
     
     // fake-backend user read
     function read(){
-      console.log(request.params.get('email'));
-      return of(new HttpResponse({
-        body: null,
-        status: 0,
-      }))
+      //console.log(request.params.get('email'));
+      const user = users.find(x => x.email === request.params.get('email'));
+      if(user){
+        // User's can be found, send email to users, return message.
+        return of(new HttpResponse({
+          body: {message: "Click the link send you by email to change password."},
+        }));
+      }
+      return throwError(new HttpErrorResponse({
+        error: "User doesn't exist"
+      }));
     }
 
     // fake-backend user authenticate

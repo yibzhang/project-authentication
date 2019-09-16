@@ -28,8 +28,17 @@ export class FindPasswordComponent implements OnInit {
     var email = this.findPasswordFormGroup.controls['email'].value;
 
     this.userService.read(email).subscribe(
-      res => {console.log(res);},
-      err => {console.log(err);},
+      res => {
+        this.loading = false;
+        this.logService.clearErrors();
+        this.logService.clearLogs();
+        this.logService.addLogs(res.body.message);
+      },
+      err => {
+        this.loading = false;
+        this.logService.clearErrors();
+        this.logService.addErrors(err.error);
+      },
     );
   }
 }
