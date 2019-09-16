@@ -24,35 +24,26 @@ align
   text-align: center;
 }
 
-.userDelete-card-form {
-  margin-top: 25px;
-  text-align: left;
-}
-
-.userDelete-card-form-group {
-  margin-top: 25px;
-}
-
-.userDelete-card-form-group-label {
-  font-size: small;
+.userDelete-card-label {
+  font-size: medium;
   color: var(--global-font-color);
 }
 
-.userDelete-card-form-group-btn-div{ 
+.userDelete-card-btn-div{ 
   margin-top: 25px;
   margin-bottom: 25px;
   margin-right: 0px;
   text-align: right;
 }
 
-.userDelete-card-form-group-btn {
+.userDelete-card-btn {
   font-size: medium;
   font-weight: bold;
   color: var(--global-font-color);
   border-color: var(--global-block-border-color);
 }
 
-.userDelete-card-form-group-btn:hover{
+.userDelete-card-btn:hover{
   font-size: medium;
   font-weight: bold;
   color: var(--global-font-color);

@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: 'changepassword', component: ChangePasswordComponent, canActivate: [LoggedInGuard]},
   { path: 'register', component: RegisterComponent, canActivate: [NotLoggedInGuard]},
   { path: 'userDetail', component: UserDetailComponent, canActivate: [LoggedInGuard]},
+  { path: 'userDelete', component: UserDeleteComponent, canActivate: [LoggedInGuard]},
   { path: 'product', component: ProductComponent},
   { path: '**', component: PageNotFoundComponent}
 ]
