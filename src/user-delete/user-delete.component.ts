@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
+import { Router } from '@angular/router';
+
 import { LogService } from './../_service/log.service';
 import { UserService } from './../_service/user.service';
 import { AuthenticationService } from './../_service/authentication.service';
@@ -15,7 +18,8 @@ export class UserDeleteComponent implements OnInit {
   constructor(
     private userService: UserService,
     private logService: LogService,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService,
+    private router: Router) { }
 
   ngOnInit() {
     this.loading = false;
@@ -23,10 +27,24 @@ export class UserDeleteComponent implements OnInit {
   }
 
   deleteUser(){
-    //console.log('delete User');
+    this.loading = true;    
     this.userService.delete(this.email).subscribe(
-      res => {console.log(res);},
-      err => {console.log(err);},
+      res => {
+        this.loading = false;
+        this.logService.clearErrors();
+        this.logService.clearLogs();
+        this.logService.addLogs(res.body.message);
+        this.authenticationService.logout();
+        this.router.navigate([res.url]);
+        //console.log(res.body.message);
+      },
+      err => {
+        this.loading = false;
+        this.logService.clearErrors();
+        this.logService.clearLogs();
+        this.logService.addErrors(err.error);
+        //console.log(err);
+      },
     );
   }
 }

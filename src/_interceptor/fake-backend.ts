@@ -112,6 +112,17 @@ export class FakeBackendInterceptor implements HttpInterceptor{
     }
 
     function deleteUser(){
+      const email = request.params.get('email');
+      const idx = users.findIndex(x => x.email === email);
+      if(idx >= 0){
+        users.splice(idx, 1);
+        return of(new HttpResponse({
+          body: {message: 'User deleted!'},
+          status: 200,
+          url: '/login'
+        }));
+      }
+
       return throwError(new HttpErrorResponse({
         error: "User doesn't exist, please log out"
       }));

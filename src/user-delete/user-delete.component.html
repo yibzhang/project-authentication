@@ -7,16 +7,16 @@
       <!-- userDelete card title -->
       <div class="col-lg-12 userDelete-card-title">Delete User</div>      
 
+      <!-- email -->
+      <label class="userDelete-card-label">EMAIL: {{email}}</label>
+
       <!-- error and messages -->      
       <app-message [messages]="this.logService.logs"></app-message>
       <app-error [errors]="this.logService.errors"></app-error>
 
-      <!-- email -->
-      <label class="userDelete-card-label">EMAIL: {{email}}</label>
-
       <!-- button -->
       <div class="form-group userDelete-card-btn-div">
-        <button (click)="deleteUser()" class="btn userDelete-card-btn">
+        <button (click)="deleteUser()" class="btn userDelete-card-btn" [disabled]="loading">
           <div>
             Delete User
             <!-- loading -->
