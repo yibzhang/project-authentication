@@ -54,7 +54,7 @@ export class UserService {
     );
   }
 
-  dele(email: string){
+  delete(email: string){
     return this.http.delete<any>(
       environment.apiUrl + '/users',
       {
