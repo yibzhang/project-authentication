@@ -41,6 +41,8 @@ export class FakeBackendInterceptor implements HttpInterceptor{
           return read();
         case url.endsWith('/users') && (method == "PUT"):
           return update();
+        case url.endsWith('/users') && (method == "DELETE"):
+          return deleteUser();
         default:
           return throwError(new HttpErrorResponse({
             status: 404,
@@ -105,7 +107,13 @@ export class FakeBackendInterceptor implements HttpInterceptor{
         }));
       }
       return throwError(new HttpErrorResponse({
-        error: "User doesn't exits, please log out"
+        error: "User doesn't exist, please log out"
+      }));
+    }
+
+    function deleteUser(){
+      return throwError(new HttpErrorResponse({
+        error: "User doesn't exist, please log out"
       }));
     }
 

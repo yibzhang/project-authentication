@@ -23,6 +23,10 @@ export class UserDeleteComponent implements OnInit {
   }
 
   deleteUser(){
-    console.log('delete User');
+    //console.log('delete User');
+    this.userService.delete(this.email).subscribe(
+      res => {console.log(res);},
+      err => {console.log(err);},
+    );
   }
 }
