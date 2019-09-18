@@ -1,0 +1,18 @@
+.product-card{
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 300px;
+  width: 300px;
+  background: var(--global-block-background-color);
+}
+
+.proudct-card-img{
+  height: 250px;
+  width: ;
+  background: black;
+}
+
+.product-card-form{
+  margin-top:0;
+  background:red;
+}

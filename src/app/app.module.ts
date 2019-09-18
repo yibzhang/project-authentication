@@ -17,11 +17,14 @@ import { ChangePasswordComponent } from './../change-password/change-password.co
 import { RegisterComponent } from './../register/register.component';
 import { UserDetailComponent } from './../user-detail/user-detail.component';
 import { UserDeleteComponent } from './../user-delete/user-delete.component';
-import { ProductComponent } from './../product/product.component';
 import { ValidatorPrintErrorComponent } from './../validator/validator-print-error.component';
 import { ErrorComponent } from './../error/error.component';
 import { MessageComponent } from './../message/message.component';
 import { PageNotFoundComponent } from './../page-not-found/page-not-found.component';
+
+import { ProductComponent } from './../product/product.component';
+import { ProductCardComponent } from './../product-card/product-card.component';
+
 // Interceptors
 import { httpInterceptorProvider } from './../_interceptor';
 
@@ -34,7 +37,8 @@ const routes: Routes = [
   { path: 'userDetail', component: UserDetailComponent, canActivate: [LoggedInGuard]},
   { path: 'userDelete', component: UserDeleteComponent, canActivate: [LoggedInGuard]},
   { path: 'product', component: ProductComponent},
-  { path: '**', component: PageNotFoundComponent}
+  { path: 'productCard', component: ProductCardComponent},
+  { path: '**', component: PageNotFoundComponent},
 ]
 
 @NgModule({
@@ -61,6 +65,7 @@ const routes: Routes = [
                   UserDetailComponent,
                   UserDeleteComponent,
                   ProductComponent,
+                  ProductCardComponent,
                   ValidatorPrintErrorComponent,
                   ErrorComponent,
                   MessageComponent,
