@@ -1,9 +1,18 @@
 <div class="product-card">
-  <img class="product-card-img img-thumbnail" src="...">
+
+  <!-- Product img -->
+  <div class="container product-card-img img-thumbnail">
+    <img src="">
+  </div>
   
   <!-- Submit number of shopping products-->
-  <form class="product-card-form">
-    <input type="number">
-    <button class="primary-btn">Add To Cart</button>
+  <form class="form-inline product-card-form" [formGroup]="productFormGroup" (ngSubmit)="addToCart()">
+    <div class="form-group product-card-form-group">
+      <input type="number" min="0" class="form-control product-card-form-input" formControlName="productNum">
+    </div>
+    <div class="form-group product-card-form-group">
+      <button type="submit" class="btn product-card-form-btn">Add To Cart</button>
+    </div>
   </form>
+
 </div>

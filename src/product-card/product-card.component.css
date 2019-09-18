@@ -3,16 +3,40 @@
   margin-left: 10px;
   height: 300px;
   width: 300px;
-  background: var(--global-block-background-color);
+  box-shadow: var(--global-block-shadow);
 }
 
-.proudct-card-img{
-  height: 250px;
-  width: ;
-  background: black;
+.product-card-img{
+  height: 85%;
+  width: 100%;
 }
 
 .product-card-form{
   margin-top:0;
-  background:red;
+  height: 15%;
+  width: 100%;
+}
+
+.product-card-form-group{
+  height: 100%;
+}
+
+.product-card-form-input{
+  height: 100
+}
+
+.product-card-form-btn {
+  height: 100%;
+  font-size: small;
+  font-weight: bold;
+  color: var(--global-font-color);
+  background: var(--global-block-background-color);
+  border-color: var(--global-block-border-color);
+}
+
+.product-card-form-btn:hover{
+  font-size: small;
+  font-weight: bold;
+  color: var(--global-font-color);
+  background: var(--global-block-background-hover-color);
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-product-card',
@@ -9,10 +10,17 @@ export class ProductCardComponent implements OnInit {
   @Input('imgSrc')
   imgSrc: string;
 
-  constructor() { }
+  private productFormGroup = this.formBuilder.group({
+    productNum: new FormControl(''),
+  });
 
-  ngOnInit() {
-    
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit() {    
+  }
+
+  addToCart(){
+    console.log(`Add to cart number: ${this.productFormGroup.controls['productNum'].value}`)
   }
 
 }
