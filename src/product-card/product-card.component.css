@@ -7,16 +7,23 @@
 }
 
 .product-card-img-div{
-  height: 85%;
+  height: 80%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.product-card-label-div{
+  margin-top:0;
+  height: 10%;
+  width: 100%;
+  text-align: center;
+}
+
 .product-card-form-div{
   margin-top:0;
-  height: 15%;
+  height: 10%;
   width: 100%;
 }
 

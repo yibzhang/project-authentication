@@ -3,11 +3,16 @@
   <!-- Product img -->
   <div class="container product-card-img-div">
     <a href="/product">
-      <span class="glyphicon glyphicon-picture" style="font-size:100px" aria-hidden="true" [hidden]='imgSrc'></span>
+      <span class="glyphicon glyphicon-picture" style="font-size:100px" aria-hidden="true" [hidden]='product.src'></span>
       <figure>
-        <img class="img-fluid" src="{{imgSrc}}" alt="">
+        <img class="img-fluid" src="{{product.src}}" alt="">
       </figure>
     </a>
+  </div>
+
+  <!-- product name -->
+  <div class="container product-card-label-div">
+    <label>{{product.name}}</label>
   </div>
   
   <!-- Submit number of shopping products-->
@@ -15,7 +20,7 @@
     <form class="form-inline product-card-form" [formGroup]="productFormGroup" (ngSubmit)="addToCart()">
       <!-- Input -->
       <div class="form-group product-card-form-group">
-        <input type="number" min="0" class="product-card-form-group-input" formControlName="productNum">
+        <input type="number" min="0" class="product-card-form-group-input" formControlName="quantity">
       </div>
       <!-- Button -->
       <div class="form-group product-card-form-group">
