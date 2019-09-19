@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { Product } from './../_model/product';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-product-card',
@@ -26,7 +27,20 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart(){
-    console.log(`Add to cart number: ${this.productFormGroup.controls['quantity'].value}`)
+    var numInTotal: number;
+    var numInForm = this.productFormGroup.controls['quantity'].value;
+    var numInStorage = localStorage.getItem(`${environment.brand}_${this.product.name}`);
+
+    if(numInForm){
+      if(!numInStorage){
+        numInTotal = numInForm;
+      }else{
+        numInTotal = numInForm + Number(numInStorage);
+      }
+      localStorage.setItem(`${environment.brand}_${this.product.name}`, numInTotal);
+    }
+    
+    console.log(localStorage.getItem(`${environment.brand}_${this.product.name}`) + ` ${this.product.name} in cart`);
   }
 
 }
