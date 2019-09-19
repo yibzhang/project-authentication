@@ -11,6 +11,18 @@
   <!-- Collapse content-->
   <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav ml-auto">
+      <!-- shopping cart-->     
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" id="shoppingCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="shoppingCart">
+          <a class="dropdown-item" href="#" style="color: grey">Empty</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Product: x1</a>
+        </div>
+      </li>
+
       <!-- login -->
       <li class="nav-item" [hidden]="authenticationService.loggedInStatus">
         <a class="nav-link" href="/login">Login</a>
@@ -26,8 +38,8 @@
       <!-- logout -->
       <li class="nav-item" [hidden]="!authenticationService.loggedInStatus">
         <a class='nav-link' href="#" (click)="authenticationService.logout()">Logout</a>
-      </li> 
-     
+      </li>
+
     </ul>
   </div>
 </nav>
