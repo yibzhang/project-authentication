@@ -22,25 +22,45 @@ export class ProductCardComponent implements OnInit {
   }
 
   ngOnInit() {    
-    this.product.name = "samsung tv";
-    this.product.src = "https://cdn.verk.net/960/images/40/2_491556-2000x1437.jpeg";
+    //this.product.name = "samsung tv";
+    //this.product.src = "https://cdn.verk.net/960/images/40/2_491556-2000x1437.jpeg";
   }
 
   addToCart(){
-    var numInTotal: number;
+    var numInTotal: number;    
+    var numInStorage: number;
     var numInForm = this.productFormGroup.controls['quantity'].value;
-    var numInStorage = localStorage.getItem(`${environment.brand}_${this.product.name}`);
+    var shoppingCartObject = JSON.parse(localStorage.getItem(environment.shoppingCart));
 
-    if(numInForm){
-      if(!numInStorage){
-        numInTotal = numInForm;
+    if(this.product.name){
+      // numInForm default is 1    
+      if(!numInForm) numInForm = 1;
+      // If shoppingCartObject doesn't exist in storage, set to empty object
+      if(!shoppingCartObject) shoppingCartObject = {};
+      // No key in shoppingCart, set numInStorage 0
+      if(shoppingCartObject.hasOwnProperty(this.product.name)){
+        numInStorage = shoppingCartObject[this.product.name];
       }else{
-        numInTotal = numInForm + Number(numInStorage);
+        numInStorage = 0;
       }
-      localStorage.setItem(`${environment.brand}_${this.product.name}`, numInTotal);
+
+      // Set storage
+      numInTotal = numInForm + Number(numInStorage);
+      shoppingCartObject[this.product.name] = numInTotal;
+      localStorage.setItem(environment.shoppingCart, JSON.stringify(shoppingCartObject));
+
+      // debug print out
+      console.log(JSON.parse(localStorage.getItem(environment.shoppingCart)));
+    }else{
+      console.log("Product doesn't exist");
     }
-    
-    console.log(localStorage.getItem(`${environment.brand}_${this.product.name}`) + ` ${this.product.name} in cart`);
   }
 
+  deleteFromCart(){
+
+  }
+
+  clearFromCart(){
+
+  }
 }

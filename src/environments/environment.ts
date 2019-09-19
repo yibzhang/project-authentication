@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
   apiUrl: 'https://my-json-server.typicode.com/yibzhang/demo',
-  brand: 'ecommerce',
+  shoppingCart: 'ecommerce-cart',
   currentUserTag: 'ecommerce-current-user',
 };

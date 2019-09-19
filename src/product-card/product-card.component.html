@@ -20,7 +20,7 @@
     <form class="form-inline product-card-form" [formGroup]="productFormGroup" (ngSubmit)="addToCart()">
       <!-- Input -->
       <div class="form-group product-card-form-group">
-        <input type="number" min="0" class="product-card-form-group-input" formControlName="quantity">
+        <input type="number" min="1" placeholder="1" class="product-card-form-group-input" formControlName="quantity">
       </div>
       <!-- Button -->
       <div class="form-group product-card-form-group">
