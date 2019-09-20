@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './../_service/authentication.service';
+import { ProductService } from './../_service/product.service';
 import { Router } from '@angular/router';
 
 import { environment } from './../environments/environment';
@@ -13,10 +14,7 @@ export class AppComponent  {
   public isCollapsed = true;
 
   constructor(private authenticationService: AuthenticationService,
+              private productServiec: ProductService,
               private router: Router
   ){};
-
-  public get productsObjFromStorage(): any{
-    return JSON.parse(localStorage.getItem(environment.shoppingCart));
-  }
 }
