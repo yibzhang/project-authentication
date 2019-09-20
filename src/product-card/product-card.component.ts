@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { Product } from './../_model/product';
+import { ProductService } from './../_service/product.service';
 import { environment } from './../environments/environment';
 
 @Component({
@@ -17,17 +18,26 @@ export class ProductCardComponent implements OnInit {
     quantity: new FormControl(''),
   });
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private productService: ProductService) {
     this.product = new Product();
   }
 
   ngOnInit() {    
-    //this.product.name = "samsung tv";
-    //this.product.src = "https://cdn.verk.net/960/images/40/2_491556-2000x1437.jpeg";
+    this.product.name = "samsung tv";
+    this.product.src = "https://cdn.verk.net/960/images/40/2_491556-2000x1437.jpeg";
   }
 
   addToCart(){
-    var numInTotal: number;    
+    if(this.product.name)
+      this.product.quantity = this.productFormGroup.controls['quantity'].value ?
+      this.productFormGroup.controls['quantity'].value : 0;
+      this.productService.addToCart(this.product);
+    }else{
+      console.log("Product doesn't exist");
+    }
+
+    /*var numInTotal: number;    
     var numInStorage: number;
     var numInForm = this.productFormGroup.controls['quantity'].value;
     var shoppingCartObject = JSON.parse(localStorage.getItem(environment.shoppingCart));
@@ -53,14 +63,8 @@ export class ProductCardComponent implements OnInit {
       console.log(JSON.parse(localStorage.getItem(environment.shoppingCart)));
     }else{
       console.log("Product doesn't exist");
-    }
+    }*/
   }
 
-  deleteFromCart(){
-
-  }
-
-  clearFromCart(){
-
-  }
+  deleteFromCart(){}
 }

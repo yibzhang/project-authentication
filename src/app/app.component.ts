@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from './../_service/authentication.service';
 import { Router } from '@angular/router';
 
+import { environment } from './../environments/environment';
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -13,5 +15,8 @@ export class AppComponent  {
   constructor(private authenticationService: AuthenticationService,
               private router: Router
   ){};
-  
+
+  public get productsObjFromStorage(): any{
+    return JSON.parse(localStorage.getItem(environment.shoppingCart));
+  }
 }

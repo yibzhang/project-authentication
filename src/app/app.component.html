@@ -20,10 +20,15 @@
         <a class="nav-link dropdown-toggle" href="#" role="button" id="shoppingCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="shoppingCart">
-          <a class="dropdown-item" href="#" style="color: grey">Empty</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Product: x1</a>
+        <div class="dropdown-menu" aria-labelledby="shoppingCart">                              
+          <!-- Cart is empty -->
+          <div *ngIf="!productsObjFromStorage">
+            <a class="dropdown-item" href="#" style="color: grey">Empty</a>
+          </div>
+          <!-- Cart isn't empty -->
+          <div *ngFor="let product of productsObjFromStorage | keyvalue">
+            <a class="dropdown-item" href="#">{{product.key}}{{product.value}}</a>
+          </div>
         </div>
       </li>
 
