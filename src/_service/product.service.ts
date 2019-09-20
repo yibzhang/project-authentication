@@ -18,9 +18,6 @@ export class ProductService {
     return Object.keys(this.productsObjFromStorage).map(key => this.productsObjFromStorage[key]).reduce((a, b) => a + b, 0);
   }
 
-  sumQuantityFromStorage(index: number, end: number){
-  }
-
   productQuantityFromStorage(name: string){
     return this.productsObjFromStorage.hasOwnProperty(name)?
     this.productsObjFromStorage[name] : 0;

@@ -14,7 +14,7 @@ export class AppComponent  {
   public isCollapsed = true;
 
   constructor(private authenticationService: AuthenticationService,
-              private productServiec: ProductService,
+              private productService: ProductService,
               private router: Router
   ){};
 }

@@ -30,3 +30,36 @@ nav>div>ul>li>a{
 nav>div>ul>li>a:hover{
   color: var(--global-font-hover-color);
 }
+
+.dropdown-menu{
+  margin-top: 10px;
+  background: var(--global-block-background-color);
+  box-shadow: var(--global-block-shadow);
+}
+
+
+.dropdown-menu a li{
+  font-size: big;
+  font-weight: bold;
+  color: var(--global-font-color);
+}
+
+.dropdown-menu a{
+	padding-top:5px;
+	padding-bottom:5px;
+	display: block;
+}
+.dropdown-menu a:hover{
+	background-color: var(--global-block-background-hover-color);
+}
+
+.dropdown-menu.columns-2{
+	min-width: 400px;
+}
+
+@media (max-width: 767px) {
+	.dropdown-menu.columns-2 {
+		min-width: 240px !important;
+		overflow-x: hidden;
+	}
+}

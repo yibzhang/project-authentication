@@ -16,20 +16,45 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav ml-auto">
       <!-- shopping cart-->     
+      
       <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+          {{productService.totalQuantityFromStorage}}
+        </a>
+
+        <ul class="dropdown-menu columns-2 dropdown-menu-right">
+          <div *ngFor="let product of productService.productsObjFromStorage | keyvalue">
+            <a href="">
+              <div class="row">
+                <li class="col-1"></li>
+                <li class="col-9">{{product.key}}</li>
+                <li class="col-2">x{{product.value}}</li>
+              </div>
+            </a>
+          </div>
+        </ul>
+        <!--
         <a class="nav-link dropdown-toggle" href="#" role="button" id="shoppingCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="shoppingCart">                              
-          <!-- Cart is empty -->
-          <div *ngIf="!productsObjFromStorage">
+        -->
+        <!--
+        <div class="dropdown-menu multi-column column-2" aria-labelledby="shoppingCart">                              
+          
+          <div *ngIf="!productService.totalQuantityFromStorage">
             <a class="dropdown-item" href="#" style="color: grey">Empty</a>
           </div>
-          <!-- Cart isn't empty -->
-          <div *ngFor="let product of productsObjFromStorage | keyvalue">
-            <a class="dropdown-item" href="#">{{product.key}}{{product.value}}</a>
+          <div *ngIf="productService.totalQuantityFromStorage">
+            <div *ngFor="let product of productService.productsObjFromStorage | keyvalue">
+              <a class="dropdown-item" href="#">
+                <strong>{{product.key}}</strong>
+                <em>x{{product.value}}</em>
+              </a>
+            </div>
           </div>
         </div>
+        -->
       </li>
 
       <!-- login -->
