@@ -37,19 +37,31 @@ nav>div>ul>li>a:hover{
   box-shadow: var(--global-block-shadow);
 }
 
+.dropdown-menu .row{
+  margin-left: 5px;
+}
 
-.dropdown-menu a li{
+.dropdown-menu li{
   font-size: big;
   font-weight: bold;
   color: var(--global-font-color);
 }
 
-.dropdown-menu a{
+.dropdown-menu li{
 	padding-top:5px;
 	padding-bottom:5px;
 	display: block;
 }
-.dropdown-menu a:hover{
+
+.dropdown-menu li button{
+  color: var(--global-font-color);
+  font-weight: bold;
+}
+.dropdown-menu li button:hover{
+  background-color: var(--global-block-background-hover-color);
+}
+
+.li-product-name:hover{
 	background-color: var(--global-block-background-hover-color);
 }
 

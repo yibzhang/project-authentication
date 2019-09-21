@@ -17,4 +17,14 @@ export class AppComponent  {
               private productService: ProductService,
               private router: Router
   ){};
+  
+  AddProductInCart(e: Event, productName: String){
+    console.log(`add product: ${productName}, but not close the dropdown`);
+    e.stopPropagation();
+  }
+
+  clearProductInCart(e: Event, productName: String){
+    console.log(`clear product: ${productName}, but not close the dropdown`);
+    e.stopPropagation();
+  }
 }

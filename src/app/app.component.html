@@ -24,14 +24,15 @@
         </a>
 
         <ul class="dropdown-menu columns-2 dropdown-menu-right">
-          <div *ngFor="let product of productService.productsObjFromStorage | keyvalue">
-            <a href="">
-              <div class="row">
-                <li class="col-1"></li>
-                <li class="col-9">{{product.key}}</li>
-                <li class="col-2">x{{product.value}}</li>
-              </div>
-            </a>
+          <div *ngFor="let productObj of productService.productsObjFromStorage | keyvalue">
+            <div class="row">
+              <li class="col-8 li-product-name">{{productObj.key}}</li>
+              <li class="col-4">
+                x{{productObj.value}}
+                <button class="btn" (click)="AddProductInCart($event, productObj.key)">Add</button>
+                <button class="btn" (click)="clearProductInCart($event, productObj.key)"><span class="glyphicon glyphicon-remove"></span></button>
+              </li>
+            </div>
           </div>
         </ul>
         <!--
@@ -79,3 +80,10 @@
 </nav>
 
 <router-outlet></router-outlet>
+
+
+<script>
+  $('ul.dropdown-menu.li.button').on('click', function(event){
+    event.stopPropagation();
+  });
+</script>
