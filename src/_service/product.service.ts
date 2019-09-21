@@ -25,12 +25,30 @@ export class ProductService {
 
   addToCart(product: Product){
     var obj = this.productsObjFromStorage;
-    obj[product.name] = product.quantity + this.productQuantityFromStorage(product.name);        
+    obj[product.name] = product.quantity + this.productQuantityFromStorage(product.name);      
     localStorage.setItem(environment.shoppingCart,JSON.stringify(obj));
 
     // debug print out
-    console.log(JSON.parse(localStorage.getItem(environment.shoppingCart)));
+    console.log(this.productsObjFromStorage);
     //console.log(this.totalQuantityFromStorage);
   }
 
+  deleteFromCart(productName: string, quantity: number){
+    var obj = this.productsObjFromStorage;
+    if(obj.hasOwnProperty(productName)){
+      if(obj[productName] > quantity){
+        obj[productName] = obj[productName] - quantity;
+      }else{
+        delete obj[productName];
+      }
+    }
+    localStorage.setItem(environment.shoppingCart, JSON.stringify(obj));
+
+    // debug print
+    console.log(this.productsObjFromStorage);
+  }
+
+  clearCart(){
+    localStorage.setItem(environment.shoppingCart, JSON.stringify({}));
+  }
 }
