@@ -29,11 +29,12 @@
               <li class="col-8 li-product-name">{{productObj.key}}</li>
               <li class="col-4">
                 x{{productObj.value}}
-                <button class="btn" (click)="AddProductInCart($event, productObj.key)">Add</button>
-                <button class="btn" (click)="clearProductInCart($event, productObj.key)"><span class="glyphicon glyphicon-remove"></span></button>
+                <button class="btn" (click)="deleteProductFromCart($event, productObj.key)">Delete</button>
+                <button class="btn" (click)="clearProductFromCart($event, productObj)"><span class="glyphicon glyphicon-remove"></span></button>
               </li>
             </div>
           </div>
+          <button class="btn" (click)="emptyCart()">Emtpy Cart</button>
         </ul>
         <!--
         <a class="nav-link dropdown-toggle" href="#" role="button" id="shoppingCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

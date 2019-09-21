@@ -18,13 +18,20 @@ export class AppComponent  {
               private router: Router
   ){};
   
-  AddProductInCart(e: Event, productName: String){
+  deleteProductFromCart(e: Event, productName: string){
     console.log(`add product: ${productName}, but not close the dropdown`);
+    this.productService.deleteFromCart(productName, 1);
     e.stopPropagation();
   }
 
-  clearProductInCart(e: Event, productName: String){
-    console.log(`clear product: ${productName}, but not close the dropdown`);
+  clearProductFromCart(e: Event, productObj){
+    console.log(`clear product: ${productObj.key}, but not close the dropdown`);
+    this.productService.deleteFromCart(productObj.key, productObj.value);
     e.stopPropagation();
+  }
+
+  emptyCart(){
+    console.log('Empty cart!');
+    this.productService.clearCart();
   }
 }

@@ -75,3 +75,11 @@ nav>div>ul>li>a:hover{
 		overflow-x: hidden;
 	}
 }
+
+.dropdown-menu button{
+  color: var(--global-font-color);
+  font-weight: bold;
+}
+.dropdown-menu button:hover{
+  background-color: var(--global-block-background-hover-color);
+}
